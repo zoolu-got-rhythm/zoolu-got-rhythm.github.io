@@ -32,33 +32,33 @@ while(i<=26){
 
 
 
-  if(i<11){
+  if( i < 11 ){
        //create and append spawns to row 1.
 
-       row1.appendChild(spawn)
+       row1.appendChild(spawn);
        keyboard.appendChild(row1);
        spawn.innerHTML = alphabet[i-1].toUpperCase();
 
   }
-  else if(i<20){
+  else if( i < 20 ){
        //create and append spawns to row 2.
 
-       row2.appendChild(spawn)
+       row2.appendChild(spawn);
        keyboard.appendChild(row2);
        spawn.innerHTML = alphabet[i-1].toUpperCase();
 
   }
-  else if(i<27){
+  else if( i < 27 ){
       //create and append spawns to row 3.
 
-      row3.appendChild(spawn)
+      row3.appendChild(spawn);
       keyboard.appendChild(row3);
       spawn.innerHTML = alphabet[i-1].toUpperCase();
   }
   else{
     //create and appends the spacebar.
 
-      row4.appendChild(spawn)
+      row4.appendChild(spawn);
       keyboard.appendChild(row4);
       spawn.style.width="150px";
       spawn.innerHTML = alphabet[i-1].toUpperCase();
@@ -69,28 +69,23 @@ while(i<=26){
 
 
 
-var anim = setInterval(function(){message()}, 100);
+var anim = setInterval( function(){ message() }, 100 );
 
 function message(){
 
   letterSpace++;
-  /*document.getElementById("screen").innerHTML = alphabet[x];
-  alert(letterSpace+" "+"presses");
-  letterSpace++;
-  */
+
   var character = document.createElement("p");
-  //character.innerHTML = "i";
-  character.innerHTML = beacon.substring(letterSpace-1, letterSpace)//.toUpperCase();
+
+  character.innerHTML = beacon.substring(letterSpace-1, letterSpace);//.toUpperCase();
   screen.appendChild(character);
   character.classList.add('characters');
-  //screen.appendChild(beacon.substring(i));
-
-  if(letterSpace === beacon.length+1)clearInterval(anim);
-};
 
 
-//var yes;
-//var no;
+  if( letterSpace === beacon.length+1 )clearInterval(anim);
+}
+
+
 
 //buzzword collects specific key'd input.
 var buzzword = [];
@@ -107,12 +102,11 @@ function expand(x){
 
 
   //checks for certain letters that eventualy equate to "yes" or "no".
-  if(alphabet[x]==="y" || alphabet[x]==="e" || alphabet[x]==="s"){
+  if( alphabet[x] === "y" || alphabet[x] === "e" || alphabet[x] === "s" ){
       //alert("hah you typed y.");
       buzzword.push(alphabet[x]);
       //alert(alphabet[x]+ " " + "recognized.");
-  }
-  else if(alphabet[x]==="n" || alphabet[x]==="o"){
+  }else if( alphabet[x] === "n" || alphabet[x] === "o" ){
       buzzword.push(alphabet[x]);
       //alert(alphabet[x]+ " " + "recognized.");
   }else{
@@ -120,9 +114,6 @@ function expand(x){
 
   }
 
-  //buzzword.push(alphabet[x]);
-  //heed(buzzword[x]);
-  //heed(alphabet[x]);
 
   /*this function is invoked and references up a level to the
    global execution context for the heed function.*/
@@ -145,9 +136,6 @@ function expand(x){
 
 function heed(){
 
-
-
-
 if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
 alert("you said YES! OH MY GOSH, you want to see my work!");
 }
@@ -155,28 +143,5 @@ alert("you said YES! OH MY GOSH, you want to see my work!");
 if( buzzword[0] === "n" && buzzword[1] === "o" ){
 alert("ohh, fine! well you know the magic word if you change your mind.");
 }
-
-
-
-
-/*
-
-  switch(buzzword[0]){
-    case "y" && "e" && "s":
-      alert("do this crazy stuff..."); //yes.push("y");
-      break;
-
-    case "no":
-       //aww, your kidding right?
-      break;
-
-    default:
-       //alert("Not detected.");
-       alert(buzzword[1]);
-      break;
-
-  }
-  */
-
 
 };
