@@ -24,6 +24,7 @@ var row4 = document.createElement("div");
 while(i<=26){
 
   i++;
+  //spawn creates each key and add's on event listener and styling ref.
 
   spawn = document.createElement("div");
   spawn.onclick = expand.bind(this, (i-1));
@@ -32,41 +33,41 @@ while(i<=26){
 
 
   if(i<11){
-    //create and append spawns to a new row.
+       //create and append spawns to row 1.
 
-    row1.appendChild(spawn)
-   // row1.childNodes[i].onclick = expand(i);
-     keyboard.appendChild(row1);
-   spawn.innerHTML = alphabet[i-1].toUpperCase();
+       row1.appendChild(spawn)
+       keyboard.appendChild(row1);
+       spawn.innerHTML = alphabet[i-1].toUpperCase();
 
   }
   else if(i<20){
+       //create and append spawns to row 2.
+
        row2.appendChild(spawn)
-       //row2.childNodes[i].onclick = expand(i);
-     keyboard.appendChild(row2);
-   spawn.innerHTML = alphabet[i-1].toUpperCase();
+       keyboard.appendChild(row2);
+       spawn.innerHTML = alphabet[i-1].toUpperCase();
 
   }
   else if(i<27){
+      //create and append spawns to row 3.
+
       row3.appendChild(spawn)
-      //row3.childNodes[i].onclick = expand(i);
-     keyboard.appendChild(row3);
-   spawn.innerHTML = alphabet[i-1].toUpperCase();
+      keyboard.appendChild(row3);
+      spawn.innerHTML = alphabet[i-1].toUpperCase();
   }
   else{
-    row4.appendChild(spawn)
-    //row4.childNodes[i].onclick = expand(i);
-     keyboard.appendChild(row4);
-    spawn.style.width="150px";
-   spawn.innerHTML = alphabet[i-1].toUpperCase();
+    //create and appends the spacebar.
 
-  }
+      row4.appendChild(spawn)
+      keyboard.appendChild(row4);
+      spawn.style.width="150px";
+      spawn.innerHTML = alphabet[i-1].toUpperCase();
 
-   //keyboard.childNodes[i].onmouseover = expand(i);
-
-
+      }
 
 }
+
+
 
 var anim = setInterval(function(){message()}, 100);
 
@@ -88,30 +89,81 @@ function message(){
 };
 
 
+//var yes;
+//var no;
 
+//buzzword collects specific key'd input.
 var buzzword = [];
 
 
+//this function will key in input to the screen when the keys are clicked.
+
 function expand(x){
-  /*document.getElementById("screen").innerHTML = alphabet[x];
-  alert(letterSpace+" "+"presses");
-  letterSpace++;
-  */
+
   var character = document.createElement("p");
   character.innerHTML = alphabet[x];
   screen.appendChild(character);
   character.classList.add('characters');
 
-  buzzword.push(alphabet[x]);
-  heed(buzzword[0]);
+
+  //checks for certain letters that eventualy equate to "yes" or "no".
+  if(alphabet[x]==="y" || alphabet[x]==="e" || alphabet[x]==="s"){
+      //alert("hah you typed y.");
+      buzzword.push(alphabet[x]);
+      //alert(alphabet[x]+ " " + "recognized.");
+  }
+  else if(alphabet[x]==="n" || alphabet[x]==="o"){
+      buzzword.push(alphabet[x]);
+      //alert(alphabet[x]+ " " + "recognized.");
+  }else{
+      buzzword.length = 0;
+
+  }
+
+  //buzzword.push(alphabet[x]);
+  //heed(buzzword[x]);
+  //heed(alphabet[x]);
+
+  /*this function is invoked and references up a level to the
+   global execution context for the heed function.*/
+  heed();
+
 };
 
-function heed(arg){
-  //screen.appendChild(beacon.substring(i));
 
-  switch(arg){
-    case arg === "y":
-      alert("You typed y");
+
+
+
+
+
+
+
+
+
+
+//this function checks for matches that the user has typed.
+
+function heed(){
+
+
+
+
+if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
+alert("you said YES! OH MY GOSH, you want to see my work!");
+}
+
+if( buzzword[0] === "n" && buzzword[1] === "o" ){
+alert("ohh, fine! well you know the magic word if you change your mind.");
+}
+
+
+
+
+/*
+
+  switch(buzzword[0]){
+    case "y" && "e" && "s":
+      alert("do this crazy stuff..."); //yes.push("y");
       break;
 
     case "no":
@@ -119,10 +171,12 @@ function heed(arg){
       break;
 
     default:
-       alert("Not detected.");
-       //alert(buzzword[1]);
+       //alert("Not detected.");
+       alert(buzzword[1]);
       break;
 
   }
+  */
 
-}
+
+};
