@@ -21,7 +21,7 @@ var row4 = document.createElement("div");
  row4.classList.add('row4');
 
 
-while(i<=26){
+while( i <= 26 ){
 
   i++;
   //spawn creates each key and add's on event listener and styling ref.
@@ -137,7 +137,8 @@ function expand(x){
 function heed(){
 
 if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
-alert("you said YES! OH MY GOSH, you want to see my work!");
+//alert("you said YES! OH MY GOSH, you want to see my work!");
+loader(); 
 }
 
 if( buzzword[0] === "n" && buzzword[1] === "o" ){
