@@ -2,6 +2,10 @@
 
 
 function loader(){
+  //remember: every function has it's own execution context, and the functions
+  //down a level have a reference to functions and variables 1 level above.
+  //I think var's keey climbing that ladder all the way to global scope untill they
+  //find a match.
 
 
 
@@ -40,7 +44,7 @@ function loader(){
   var box1 = document.getElementById("child");
   box1.style.height = "20px";
   box1.style.width = "20px";
-  box1.style.background = "#ccc";
+  box1.style.background = "#00FF00";
   box1.style.position = "absolute";
 
      var cube = box1.style.height;
