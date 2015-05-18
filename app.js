@@ -4,7 +4,8 @@ keyboard.style.borderRadius="3px";
 var screen = document.getElementById("screen");
 var beacon = "Hello world, I am currently seeking work experience, would you like to see my portfolio? ";
 
-var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", " "];
+var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
+ "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", " "];
 
 var i = 0;
 var letterSpace = 0;
@@ -138,7 +139,8 @@ function heed(){
 
 if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
 //alert("you said YES! OH MY GOSH, you want to see my work!");
-loader(); 
+rewind();
+//loader();
 }
 
 if( buzzword[0] === "n" && buzzword[1] === "o" ){
@@ -146,3 +148,58 @@ alert("ohh, fine! well you know the magic word if you change your mind.");
 }
 
 };
+
+
+
+
+function rewind(){
+  //remove children/letters from the computer screen.
+  var letterSpace = screen.children.length;
+  //alert(letterSpace);
+
+
+  var anim = setInterval( function(){ message() }, 30 );
+
+  function message(){
+
+    letterSpace--;
+
+
+    screen.removeChild(screen.childNodes[letterSpace + 3]);
+    //screen.childNodes[letterSpace].style.borderBottom = "2px solid #00ff00";
+
+
+
+    if( letterSpace === 0 )clearInterval(anim);
+  };
+
+
+
+
+
+
+};
+
+
+
+
+
+var change = true;
+
+document.getElementById("instruction").addEventListener("click", function(){
+
+
+
+  //alert("works!");
+  if ( change === true){
+    document.getElementById("manual").style.visibility = "visible";
+    change = false;
+  } else {
+    document.getElementById("manual").style.visibility = "hidden";
+    change = true;
+  }
+
+   //document.getElementById("manual").style.background = "#555";
+
+
+});

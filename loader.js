@@ -7,7 +7,11 @@ function loader(){
   //I think var's keey climbing that ladder all the way to global scope untill they
   //find a match.
 
+ var queen = document.createElement("div"); //start creating var's inside objects to avoid name space collisions.
+ queen.id = "container";
+ document.getElementById("screen").appendChild(queen);
 
+ var box1 = document.createElement("div");
 
 
 
@@ -41,13 +45,13 @@ function loader(){
 
 
 
-  var box1 = document.getElementById("child");
+  //var box1 = document.getElementById("child");
   box1.style.height = "20px";
   box1.style.width = "20px";
   box1.style.background = "#00FF00";
   box1.style.position = "absolute";
 
-     var cube = box1.style.height;
+     //var cube = box1.style.height;
   //alert(cube);
 
 
@@ -80,7 +84,7 @@ function loader(){
 
 
 
-  document.getElementById("container").appendChild(box1);
+  queen.appendChild(box1);
 
   } //end of patrol
 

@@ -118,9 +118,16 @@ body{
 }
 
 .characters:last-child{
-  /* border-bottom:2px solid #00FF00;*/
+  border-bottom:2px solid #00FF00;
   /*text-decoration:underline; */
-  border-bottom:2px solid #00ff00;
+/*
+  animation: case 0.8s;
+  animation-iteration-count: infinite;
+
+  -webkit-animation: case 0.8s;
+  -webkit-animation-iteration-count: infinite;
+*/
+
 }
 
 #backdrop{
@@ -156,11 +163,27 @@ footer{
 }
 
 #container{
-  width:10px;
-  height:10px;
+  width:30px;
+  height:30px;
   /*border-radius:50%;*/
   background:#00FF00;
-  margin:70 auto;
+  margin:0 auto; /*mess with the margin to centre the block */
   position:relative;
 
+
+}
+
+#manual{
+  visibility: hidden;
+    /*display:inline;*/
+}
+
+@keyframes case{
+  from { border-bottom:2px solid #000000; }
+  to { border-bottom:2px solid #00ff00; }
+}
+
+@-webkit-keyframes case{
+  from { border-bottom:2px solid #000000; }
+  to { border-bottom:2px solid #00ff00; }
 }
