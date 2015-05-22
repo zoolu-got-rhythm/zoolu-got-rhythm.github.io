@@ -1,9 +1,9 @@
 var keyboard = document.getElementById("keyboard");
 keyboard.style.borderRadius="3px";
 
-var screen = document.getElementById("screen");
+var monitor = document.getElementById("screen");
 var beacon = "Hello world, I am currently seeking work experience, would you like to see my portfolio? ";
-
+var myProjects = ["My Neo-Cortex", "3 Laws Of Robotics", "3 Hour Layout", "Paremeter Patroller"]
 var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
  "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", " "];
 
@@ -70,21 +70,38 @@ while( i <= 26 ){
 
 
 
-var anim = setInterval( function(){ message() }, 100 );
 
-function message(){
+
+document.body.addEventListener("onload", textRoll(beacon));
+
+function textRoll(texToRoll){
+
+var anim1 = setInterval( function(){ message(texToRoll) }, 100 );
+
+function message(screenText){
+  console.log("message function started and iterating");
 
   letterSpace++;
 
   var character = document.createElement("p");
 
-  character.innerHTML = beacon.substring(letterSpace-1, letterSpace);//.toUpperCase();
-  screen.appendChild(character);
+  character.innerHTML = screenText.substring(letterSpace-1, letterSpace);//.toUpperCase();
+  monitor.appendChild(character);
   character.classList.add('characters');
 
 
-  if( letterSpace === beacon.length+1 )clearInterval(anim);
+  if( letterSpace === screenText.length+1 ){
+    clearInterval(anim1);
+    letterSpace = 0;
+    console.log("message function scanned and cleared");
+
+  }
 }
+
+}; //end of textRoll
+
+
+
 
 
 
@@ -92,13 +109,13 @@ function message(){
 var buzzword = [];
 
 
-//this function will key in input to the screen when the keys are clicked.
+//this function will key in input to the monitor when the keys are clicked.
 
 function expand(x){
 
   var character = document.createElement("p");
   character.innerHTML = alphabet[x];
-  screen.appendChild(character);
+  monitor.appendChild(character);
   character.classList.add('characters');
 
 
@@ -153,24 +170,28 @@ alert("ohh, fine! well you know the magic word if you change your mind.");
 
 
 function rewind(){
-  //remove children/letters from the computer screen.
-  var letterSpace = screen.children.length;
+  //remove children/letters from the computer monitor.
+  var letterSpace = monitor.children.length;
   //alert(letterSpace);
 
 
-  var anim = setInterval( function(){ message() }, 30 );
+  var anim2 = setInterval( function(){ message() }, 30 );
 
   function message(){
 
     letterSpace--;
 
 
-    screen.removeChild(screen.childNodes[letterSpace + 3]);
-    //screen.childNodes[letterSpace].style.borderBottom = "2px solid #00ff00";
+    monitor.removeChild(monitor.childNodes[letterSpace + 5]);
+    //monitor.childNodes[letterSpace].style.borderBottom = "2px solid #00ff00";
 
 
 
-    if( letterSpace === 0 )clearInterval(anim);
+    if( letterSpace === 0 ){
+        clearInterval(anim2);
+        //console.log(beacon);
+        textRoll(beacon);
+    }
   };
 
 
@@ -182,7 +203,7 @@ function rewind(){
 
 
 
-
+/*
 
 var change = true;
 
@@ -203,3 +224,5 @@ document.getElementById("instruction").addEventListener("click", function(){
 
 
 });
+
+*/
