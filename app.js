@@ -2,8 +2,9 @@ var keyboard = document.getElementById("keyboard");
 keyboard.style.borderRadius="3px";
 
 var monitor = document.getElementById("screen");
-var beacon = "Hello world, I am currently seeking work experience, would you like to see my portfolio? ";
-var myProjects = ["My Neo-Cortex", "3 Laws Of Robotics", "3 Hour Layout", "Paremeter Patroller"]
+var beacon = "Hello world, I am currently seeking work experience, would you like to see my portfolio?";
+var beaconLink = beacon.link("http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_str_link");
+var myProjects = ["My Neo-Cortex", "3 Laws Of Robotics", "3 Hour Layout", "Paremeter Patroller"];
 var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
  "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", " "];
 
@@ -85,7 +86,8 @@ function message(screenText){
 
   var character = document.createElement("p");
 
-  character.innerHTML = screenText.substring(letterSpace-1, letterSpace);//.toUpperCase();
+  character.innerHTML = screenText.substring(letterSpace-1, letterSpace).link("http://eloquentjavascript.net/");//.toUpperCase();
+  //character.link("http://eloquentjavascript.net/");
   monitor.appendChild(character);
   character.classList.add('characters');
 
@@ -156,20 +158,23 @@ function heed(){
 
 if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
 //alert("you said YES! OH MY GOSH, you want to see my work!");
-rewind();
+rewind(beacon); //message to be rolled out after the text is deleted.
 //loader();
 }
 
 if( buzzword[0] === "n" && buzzword[1] === "o" ){
-alert("ohh, fine! well you know the magic word if you change your mind.");
+//alert("ohh, fine! well you know the magic word if you change your mind.");
+rewind("fine then!, Hell I'll show you anyway...."); //message to be rolled out after the text is deleted.
+
 }
+
 
 };
 
 
 
 
-function rewind(){
+function rewind(response){
   //remove children/letters from the computer monitor.
   var letterSpace = monitor.children.length;
   //alert(letterSpace);
@@ -190,7 +195,7 @@ function rewind(){
     if( letterSpace === 0 ){
         clearInterval(anim2);
         //console.log(beacon);
-        textRoll(beacon);
+        textRoll(response);  //beacon
     }
   };
 
