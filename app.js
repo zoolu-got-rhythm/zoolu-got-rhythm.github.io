@@ -10,6 +10,8 @@ var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
 
 var i = 0;
 var letterSpace = 0;
+var linkIndex = 0;
+var siteLinks;
 
 var spawn;
 
@@ -95,6 +97,12 @@ function message(screenText){
   if( letterSpace === screenText.length+1 ){
     clearInterval(anim1);
     letterSpace = 0;
+
+    if(siteLinks === true){
+      linkIndex++;
+      heed();
+    }
+
     console.log("message function scanned and cleared");
 
   }
@@ -158,9 +166,33 @@ function heed(){
 
 if( buzzword[0] === "y" && buzzword[1] === "e" && buzzword[2] === "s" ){
 //alert("you said YES! OH MY GOSH, you want to see my work!");
-rewind(beacon); //message to be rolled out after the text is deleted.
-//loader();
+      siteLinks = true;
+
+      console.log("looping through array index" + i);
+
+      if(linkIndex === 0){
+        rewind(myProjects[linkIndex]); //message to be rolled out after the text is deleted. beacon string or?
+      }
+      else if(linkIndex === 1){
+        rewind(myProjects[linkIndex]);
+      }
+      else if(linkIndex === 2){
+        rewind(myProjects[linkIndex]);
+      }
+      else if(linkIndex === 3){
+        rewind(myProjects[linkIndex]);
+      }
+      else{
+        rewind("what do you wish too see next? 'skills', 'sites', 'langs'. Press the spacebar if you makea a mistake. ");
+        siteLinks = false; //turn off the switch.
+        linkIndex = 0; //reset the iterator.
+      }
+
+
 }
+
+//loader();
+
 
 if( buzzword[0] === "n" && buzzword[1] === "o" ){
 //alert("ohh, fine! well you know the magic word if you change your mind.");

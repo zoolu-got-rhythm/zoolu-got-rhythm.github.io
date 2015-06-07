@@ -9,7 +9,7 @@
   height: 135px;
   width: 370px;
   margin:0 auto;
-  border-bottom:3px solid #888;
+  border-bottom:10px solid #888;
 
 }
 
@@ -176,7 +176,7 @@ body{
 .characters{
   color:#00FF00;
   display:inline;
-  /*text-decoration:underline;*/
+  /*text-decoration:none;*/
 }
 
 .characters:last-child{
@@ -217,10 +217,11 @@ body{
 
 footer{
   position:fixed;
-  bottom:1px;
+  bottom:0px;
   width:100%;
   padding:7px;
   left:0px;
+  height:30%;
 
   background:#111;
 }
