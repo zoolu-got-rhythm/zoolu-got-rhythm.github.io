@@ -177,13 +177,13 @@ body{
 
 .characters{
 
-  display:block;
+  display:inline;
   /*text-decoration:none;*/
 }
 
 .characters a{
-  /*color:#00FF00;*/
-  color:#888;
+  color:#00FF00;
+   color:#888;
   display:inline;
   /*opacity: 1;*/
   text-decoration:none;
@@ -191,6 +191,7 @@ body{
 
 .characters:last-child{
   border-bottom:2px solid #00FF00;
+  border-bottom:2px solid #888; 
   /*text-decoration:underline; */
 
 /*
@@ -286,4 +287,28 @@ margin:5px;
   -moz-box-shadow:    inset 0 0 80px #000;
  -webkit-box-shadow: inset 0 0 80px #000;
  box-shadow:         inset 0 0 80px #000;
+}
+
+
+#visit{
+  width:150px;
+  position: fixed;
+  top: 5px;
+  left: 5px;
+
+
+}
+
+#visit p{
+  text-align: left;
+}
+
+#visit a{
+  color: #777;
+  text-decoration: none;
+}
+
+#visit a:hover{
+  color: #555;
+  text-decoration: none;
 }
