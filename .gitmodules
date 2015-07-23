@@ -4,3 +4,6 @@
 [submodule "3-Laws-Of-Robotics"]
 	path = 3-Laws-Of-Robotics
 	url = https://github.com/zoolu-got-rhythm/3-Laws-Of-Robotics
+[submodule "Morris-Residence"]
+	path = Morris-Residence
+	url = https://github.com/zoolu-got-rhythm/Morris-Residence
