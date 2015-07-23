@@ -1,3 +1,6 @@
 [submodule "My-Neo-Cortex"]
 	path = My-Neo-Cortex
 	url = https://github.com/zoolu-got-rhythm/My-Neo-Cortex
+[submodule "3-Laws-Of-Robotics"]
+	path = 3-Laws-Of-Robotics
+	url = https://github.com/zoolu-got-rhythm/3-Laws-Of-Robotics
