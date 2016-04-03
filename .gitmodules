@@ -7,3 +7,6 @@
 [submodule "Morris-Residence"]
 	path = Morris-Residence
 	url = https://github.com/zoolu-got-rhythm/Morris-Residence
+[submodule "Composer"]
+	path = Composer
+	url = https://github.com/zoolu-got-rhythm/Composer.git
