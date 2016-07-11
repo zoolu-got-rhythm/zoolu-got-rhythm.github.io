@@ -40,8 +40,8 @@ h1, h2{
 
 }
 
-
-.spawn:hover{
+/* was spawn on hover */
+.keypress{
   height:26px;
   margin-top:7px;
   border-bottom: 0px solid #888;

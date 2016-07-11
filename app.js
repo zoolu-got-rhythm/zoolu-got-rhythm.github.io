@@ -2,7 +2,7 @@ var keyboard = document.getElementById("keyboard");
 keyboard.style.borderRadius="3px";
 
 var monitor = document.getElementById("screen");
-var beacon = "Hello world, I am currently seeking work experience, would you like to see my portfolio?";
+var beacon = "Hello world I am currently seeking work experience would you like to see my portfolio?";
 var beaconLink = beacon.link("http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_str_link");
 var myProjects = ["My Neo-Cortex", "3 Laws Of Robotics", "3 Hour Layout", "Paremeter Patroller"];
 var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
@@ -24,6 +24,7 @@ var row3 = document.createElement("div");
 var row4 = document.createElement("div");
  row4.classList.add('row4');
 
+var keyNodes = [];
 
 while( i <= 26 ){
 
@@ -33,6 +34,7 @@ while( i <= 26 ){
   spawn = document.createElement("div");
   spawn.onclick = expand.bind(this, (i-1));
   spawn.classList.add('spawn');
+    keyNodes.push(spawn);
 
 
 
@@ -43,16 +45,14 @@ while( i <= 26 ){
        keyboard.appendChild(row1);
        spawn.innerHTML = alphabet[i-1].toUpperCase();
 
-  }
-  else if( i < 20 ){
+  } else if( i < 20 ){
        //create and append spawns to row 2.
 
        row2.appendChild(spawn);
        keyboard.appendChild(row2);
        spawn.innerHTML = alphabet[i-1].toUpperCase();
 
-  }
-  else if( i < 27 ){
+  } else if( i < 27 ){
       //create and append spawns to row 3.
 
       row3.appendChild(spawn);
@@ -69,6 +69,7 @@ while( i <= 26 ){
 
       }
 
+
 }
 
 
@@ -79,12 +80,14 @@ document.body.addEventListener("onload", textRoll(beacon));
 
 function textRoll(texToRoll){
 
-var anim1 = setInterval( function(){ message(texToRoll) }, 100 );
+var anim1 = setInterval( function(){ message(texToRoll) }, 500 );
 
 function message(screenText){
   console.log("message function started and iterating");
 
-  letterSpace++;
+  letterSpace++; 
+    keyPress(screenText.substring(letterSpace-1, letterSpace));
+
 
   var character = document.createElement("p");
 
@@ -148,6 +151,30 @@ function expand(x){
   heed();
 
 };
+
+
+
+// side effects of func keyPress
+var prevLetterPos;
+var toggleOff = false;
+
+function keyPress(key){
+    // soundEffect..
+    var soundEffect = new Audio("keyboard_key.mp3");
+    // if(toggleOff) soundEffect.pause();
+    soundEffect.play();
+    var letterPos = alphabet.indexOf(key.toLowerCase());
+    console.log(key);
+    console.log(letterPos);
+
+    if(toggleOff){
+        keyNodes[prevLetterPos].classList.remove("keypress");
+    }
+    keyNodes[letterPos].classList.add("keypress");
+    prevLetterPos = letterPos;
+    if(!toggleOff)
+        toggleOff = true;
+}
 
 
 
