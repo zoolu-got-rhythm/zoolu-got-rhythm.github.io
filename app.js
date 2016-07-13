@@ -96,13 +96,27 @@ window.onload = function() {
 
 
     document.body.addEventListener("onload", textRoll(beacon));
-    var keyboardSliderCurrent = keyboardSlider.value;
+
     function textRoll(texToRoll) {
 
         var humanTyping = 50; // 105 is optimal starting speed
-        var anim1 = setInterval(function () {
+
+
+
+        var work = function(){
+
+            clearTimeout(anim1);
             message(texToRoll);
-        }, keyboardSliderCurrent);
+            console.log("func ran");
+            anim1 = setTimeout(work, keyboardSlider.value);
+
+        }
+
+        var anim1 = setTimeout(work, keyboardSlider.value);
+
+
+
+
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
@@ -126,7 +140,8 @@ window.onload = function() {
             // console.log(screenText.length);
 
             if (letterSpace === screenText.length) {
-                clearInterval(anim1);
+                //clearTimeout(anim1);
+                console.log(anim1);
                 letterSpace = 0;
                 //rewind("bye bye");
 
@@ -215,9 +230,13 @@ window.onload = function() {
         var letterSpace = monitor.children.length;
         //alert(letterSpace);
 
-        var anim2 = setInterval(function () {
-            message()
-        }, 30);
+        var calls = function () {
+            clearTimeout(anim2);
+            message();
+            anim2 = setTimeout(calls, 30);
+        }
+
+        var anim2 = setTimeout(calls, 30);
 
         function message() {
             letterSpace--;
@@ -226,7 +245,7 @@ window.onload = function() {
             //monitor.childNodes[letterSpace].style.borderBottom = "2px solid #00ff00";
 
             if (letterSpace === 0) {
-                clearInterval(anim2);
+                // clearInterval(anim2);
                 //console.log(beacon);
                 textRoll(response);  //beacon
             }
