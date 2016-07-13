@@ -23,13 +23,12 @@ window.onload = function() {
         "butttttttt ",
         "dont over do it ",
         "take your first steps towards a life changing journey as my master did ",
-        "the ucas code issssss ",
-        "four ",
-        "j ",
-        "v ",
-        "d ",
+        "the ucas code in numerical and alphabetic digits issssssssss ",
+        "fourr ",
+        "jayyy ",
+        "veeee ",
+        "deeee ",
         "did you get that ",
-        "if not slow down the typing speed so you can read it ",
         "good luck user ",
         "relaying message ",
     ];
@@ -97,10 +96,10 @@ window.onload = function() {
 
     function textRoll(texToRoll) {
 
-        var humanTyping = 50;
+        var humanTyping = 50; // 105 is default speed
         var anim1 = setInterval(function () {
             message(texToRoll)
-        }, 105);
+        }, 10);
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
@@ -163,6 +162,39 @@ window.onload = function() {
                         rewind(myProjects[linkIndex]);
                         break;
                     case 10:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 11:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 12:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 13:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 14:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 15:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 16:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 17:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 18:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 19:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 20:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 21:
                         rewind(myProjects[linkIndex]);
                         break;
                     default:
