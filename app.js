@@ -1,4 +1,4 @@
-
+// loads function when window is ready
 window.onload = function() {
 
     var keyboard = document.getElementById("keyboard");
