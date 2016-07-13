@@ -53,6 +53,8 @@ window.onload = function() {
     var row4 = document.createElement("div");
     row4.classList.add('row4');
 
+    var keyboardSlider = document.getElementById("typingSpeed");
+
     var keyNodes = [];
 
     while (i <= 26) {
@@ -94,18 +96,19 @@ window.onload = function() {
 
 
     document.body.addEventListener("onload", textRoll(beacon));
-
+    var keyboardSliderCurrent = keyboardSlider.value;
     function textRoll(texToRoll) {
 
-        var humanTyping = 50;
+        var humanTyping = 50; // 105 is optimal starting speed
         var anim1 = setInterval(function () {
-            message(texToRoll)
-        }, 105);
+            message(texToRoll);
+        }, keyboardSliderCurrent);
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
             // humanTyping = Math.round(Math.random() * 500);
             console.log(humanTyping);
+            console.log(keyboardSlider.value);
             console.log("message function started and iterating");
 
             letterSpace++;
