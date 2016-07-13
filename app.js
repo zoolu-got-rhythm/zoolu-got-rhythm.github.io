@@ -7,9 +7,33 @@ window.onload = function() {
     var monitor = document.getElementById("screen");
     var beacon = "Hello world";
     var beaconLink = beacon.link("http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_str_link");
-    var myProjects = ["i am a student studying applied software engineering at cardiff university ", "ive written this program using skills learnt from my first year to speak on my behalf about my univeristy experience thus far ",
-        "at the national software academy we are being taught what it means to write software in the twenty first century ", "we learn to write software as individuals but more importantly in teams ", "give my course a google and take your first step towards a life changing journey as i have ",
-        "good luck", "relaying message in ", "5 ", "4 ", "3 ", "2 ", "1 "];
+    var myProjects = [
+        "i am a program deployed with the goal of telling future prospects about university life ",
+        "at some point in time i was written by a student studying applied software engineering at cardiff university ",
+        "his name was christopher but that doesnt matter for now ",
+        "he wrote me using the skills learnt from his course to speak on his behalf about his experiences at university after one year ",
+        "at the national software academy students are being taught what it means to write software in the twenty first century ",
+        "they learn to write software as individuals but more importantly in teams ",
+        "what my master likes most about software engineering is the ability to always change and update your creations in a costless manner ",
+        "he believes this grants you a freedom not many other disciplines do ",
+        "if any ",
+        "theres a society for everyone at cardiff university ",
+        "my master enjoyed the circus and photography societies during his time ",
+        "his advice is you get involved in a couple and meet some like minded people ",
+        "butttttttt ",
+        "dont over do it ",
+        "take your first steps towards a life changing journey as my master did ",
+        "the ucas code issssss ",
+        "four ",
+        "j ",
+        "v ",
+        "d ",
+        "did you get that ",
+        "if not slow down the typing speed so you can read it ",
+        "good luck user ",
+        "relaying message ",
+    ];
+
     var alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d",
         "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", " "];
 
@@ -76,7 +100,7 @@ window.onload = function() {
         var humanTyping = 50;
         var anim1 = setInterval(function () {
             message(texToRoll)
-        }, humanTyping);
+        }, 105);
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
@@ -121,6 +145,24 @@ window.onload = function() {
                         rewind(myProjects[linkIndex]);
                         break;
                     case 4:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 5:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 6:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 7:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 8:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 9:
+                        rewind(myProjects[linkIndex]);
+                        break;
+                    case 10:
                         rewind(myProjects[linkIndex]);
                         break;
                     default:
