@@ -59,7 +59,7 @@ window.onload = function() {
         i++;
         //spawn creates each key and add's on event listener and styling ref.
 
-        spawn = document.createElement("div");
+        var spawn = document.createElement("div");
         //spawn.onclick = expand.bind(this, (i-1));
         spawn.classList.add('spawn');
         keyNodes.push(spawn);
@@ -99,7 +99,7 @@ window.onload = function() {
         var humanTyping = 50; // 105 is default speed
         var anim1 = setInterval(function () {
             message(texToRoll)
-        }, 10);
+        }, 20);
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
