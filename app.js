@@ -95,7 +95,7 @@ window.onload = function() {
     }
 
 
-    document.body.addEventListener("onload", textRoll(beacon));
+    document.body.addEventListener("onload", textRoll(myProjects[0]));
 
     function textRoll(texToRoll) {
 
@@ -106,9 +106,9 @@ window.onload = function() {
         var work = function(){
 
             clearTimeout(anim1);
-            message(texToRoll);
             console.log("func ran");
             anim1 = setTimeout(work, keyboardSlider.value);
+            message(texToRoll);
 
         }
 
@@ -120,10 +120,6 @@ window.onload = function() {
 
         function message(screenText) {
             // dynamically alter typing speed for realistic human effect at each interval.
-            // humanTyping = Math.round(Math.random() * 500);
-            console.log(humanTyping);
-            console.log(keyboardSlider.value);
-            console.log("message function started and iterating");
 
             letterSpace++;
             keyPress(screenText.substring(letterSpace - 1, letterSpace));
@@ -140,8 +136,10 @@ window.onload = function() {
             // console.log(screenText.length);
 
             if (letterSpace === screenText.length) {
-                //clearTimeout(anim1);
+                alert('freeze and clear');
+                clearTimeout(anim1);
                 console.log(anim1);
+                console.log("WAITING FOR REWIND TO BE POPPED OFF STACK");
                 letterSpace = 0;
                 //rewind("bye bye");
 
@@ -149,15 +147,33 @@ window.onload = function() {
 
                 console.log("looping through array index" + i);
 
+
+
+                if (siteLinks === true) {
+                    linkIndex++;
+                }else{
+                    linkIndex = 0;
+                }
+
                 switch (linkIndex) {
                     case 0:
-                        rewind(myProjects[linkIndex]); //message to be rolled out after the text is deleted. beacon string or?
+                        console.log("rewinding..");
+                        rewind(); //message to be rolled out after the text is deleted. beacon string or?
+                        // recursive
+                        console.log("RUNNING MESSAGE");
+                        // could be a delay of x time before calling. as setTimeout is asynchronous and non-blocking
+                        // var delay = rewind();
+                        // window.setTimeout(function(){textRoll(text)}, delay);
+                        textRoll(myProjects[linkIndex]);
                         break;
                     case 1:
-                        rewind(myProjects[linkIndex]);
+                        rewind();
+                        console.log("rewinding?");
+                        textRoll(myProjects[linkIndex]);
                         break;
                     case 2:
-                        rewind(myProjects[linkIndex]);
+                        rewind();
+                        message(myProjects[linkIndex]);
                         break;
                     case 3:
                         rewind(myProjects[linkIndex]);
@@ -188,12 +204,6 @@ window.onload = function() {
                         siteLinks = false;
                         // clearInterval(anim1);
                         break;
-                }
-
-                if (siteLinks === true) {
-                    linkIndex++;
-                }else{
-                    linkIndex = 0;
                 }
                 console.log("message function scanned and cleared");
             }
@@ -232,23 +242,22 @@ window.onload = function() {
 
         var calls = function () {
             clearTimeout(anim2);
-            message();
             anim2 = setTimeout(calls, 30);
+            message();
         }
 
         var anim2 = setTimeout(calls, 30);
 
         function message() {
             letterSpace--;
-
-            monitor.removeChild(monitor.childNodes[letterSpace + 5]);
-            //monitor.childNodes[letterSpace].style.borderBottom = "2px solid #00ff00";
+            monitor.removeChild(monitor.childNodes[letterSpace]);
 
             if (letterSpace === 0) {
-                // clearInterval(anim2);
-                //console.log(beacon);
-                textRoll(response);  //beacon
+                clearInterval(anim2);
+                console.log("CLEARED");
             }
-        };
-    };
+        }
+        console.log("but wait");
+        // return letterSpace * 30;
+    }
 }
