@@ -34,7 +34,6 @@ window.onload = function() {
     // init all of this stuff into memory and into the dom.
     function init() {
         while (i <= 26) {
-
             i++;
             //spawn creates each key and add's on event listener and styling ref.
 
@@ -172,6 +171,58 @@ window.onload = function() {
     }
 
     init();
+    // change to link onclick
     document.body.addEventListener("onload", textRoll(myProjects[0]));
+
+
+
+
+
+    // user input
+
+    // state
+    var messageData = "";
+
+    // link on click
+    linkElement.addEventListener("click", function(event){
+        textRoll("enter your wisdom", false); // add loop argument
+    });
+
+
+
+    // maybe map and make it pure instead?
+    var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+    keyNodes.forEach(function(DOMKey){
+        DOMKey.addEventListener("keydown", function(event){
+            var key = event.keyCode - 75;
+            var qwertyKey = alphabet.indexOf(asciiKeys[key]);
+            userInput(alphabet[qwertyKey]); // might have to use bind
+        });
+    });
+
+    // user types message input
+    // hit enter: send post request to db.
+
+    function userInput(key){
+        if(key === deleteKeyCode){
+            if(monitor.children.length === 0)
+                return;
+            // remove last child node.
+        }else{
+            keyPress(key);
+            monitor.appendChild(alphabet.charAt(key));
+            monitor.lastElementChild.style.borderBottom = "animate";
+        }
+    }
+
+    // send
+    window.addEventListener("keydown", function(event){
+        if(event.keyCode === 13) { // enter key
+            ajaxRequest("sendMessage/", "post", messageData);
+            rewind();
+            textRoll("thank you");
+            messageData = "";
+        }
+    });
 
 }
