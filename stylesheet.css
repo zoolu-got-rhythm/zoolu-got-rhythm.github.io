@@ -3,6 +3,18 @@
   color:#333;
 }
 
+ul{
+  display: inline;
+}
+
+ul li{list-style: none;
+  float: left;
+  margin-right: 10px;
+}
+
+ul li a:hover{
+  color: grey;
+}
 
 #keyboard{
   background: #aaa;

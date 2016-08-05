@@ -171,8 +171,42 @@ window.onload = function() {
     }
 
     init();
-    // change to link onclick
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // controller
+    var button1 = document.getElementById("button1");
+    button1.addEventListener("click", function(event){
+        // implement
+        alert("clicked button 1");
+    });
+
+    var button2 = document.getElementById("button2");
+    button2.addEventListener("click", function(event){
+        // implement
+        // stop what actions are happening, clear timeouts etc.
+        alert("clicked button 2");
+    });
+    // add pressed down looking styling to button, using border-bottom illusion.
+
+
     document.body.addEventListener("onload", textRoll(myProjects[0]));
+
+
+
 
 
 
@@ -182,47 +216,53 @@ window.onload = function() {
 
     // state
     var messageData = "";
+    var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
     // link on click
-    linkElement.addEventListener("click", function(event){
-        textRoll("enter your wisdom", false); // add loop argument
-    });
+    // linkElement.addEventListener("click", function(event){
+    //     textRoll("enter your wisdom", false); // add loop argument
+    // });
 
 
 
     // maybe map and make it pure instead?
-    var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
     keyNodes.forEach(function(DOMKey){
-        DOMKey.addEventListener("keydown", function(event){
-            var key = event.keyCode - 75;
+        console.log(DOMKey);
+        window.addEventListener("keydown", function(event){
+            var key = event.keyCode - 65;
             var qwertyKey = alphabet.indexOf(asciiKeys[key]);
+            console.log(alphabet[qwertyKey]);
             userInput(alphabet[qwertyKey]); // might have to use bind
         });
     });
+
+    console.log(keyNodes);
 
     // user types message input
     // hit enter: send post request to db.
 
     function userInput(key){
-        if(key === deleteKeyCode){
+        if(key === 100){ // delete keycode
             if(monitor.children.length === 0)
                 return;
-            // remove last child node.
+            else{
+                monitor.removeChild(monitor.lastChild);
+            }
         }else{
             keyPress(key);
-            monitor.appendChild(alphabet.charAt(key));
-            monitor.lastElementChild.style.borderBottom = "animate";
+            monitor.appendChild(key);
+            // monitor.lastElementChild.style.borderBottom = "animate";
         }
     }
 
-    // send
-    window.addEventListener("keydown", function(event){
-        if(event.keyCode === 13) { // enter key
-            ajaxRequest("sendMessage/", "post", messageData);
-            rewind();
-            textRoll("thank you");
-            messageData = "";
-        }
-    });
+    // send, via carriage return/enter key
+    // window.addEventListener("keydown", function(event){
+    //     if(event.keyCode === 13) { // enter key
+    //         ajaxRequest("sendMessage/", "post", messageData);
+    //         rewind();
+    //         textRoll("thank you");
+    //         messageData = "";
+    //     }
+    // });
 
 }
