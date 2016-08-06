@@ -34,9 +34,11 @@ var terminal = (function(data) {
     var keyNodes = [];
     var moduleScope;
 
+    var messageData = "";
+    var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
 
     return {
-
         read: {
             test: console.log("in read object this refers too: " + self),
             // init all of this stuff into memory and into the dom.
@@ -193,18 +195,14 @@ var terminal = (function(data) {
 
         },
 
-        write: (function (module) {
-            // local state
-            var messageData = "";
-            var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-            var self = this;
-            return {
+        write: {
 
                 test: console.log("in write object this refers too: " + moduleScope),
 
                 init: function () {
-                    console.log(moduleScope);
-                    moduleScope.rewind();
+                    console.log(module);
+                    console.log(this);
+                    this.rewind();
                     clearTimeout(anim1);
                     clearTimeout(anim2);
                     // maybe map and make it pure instead?
@@ -234,11 +232,8 @@ var terminal = (function(data) {
                         // monitor.lastElementChild.style.borderBottom = "animate";
                     }
                 },
-
-
-
             }
-        })(this)
+
     }
 
 })(myProjects); // parse in an array or json object containing all posted messages and play from back to front.
