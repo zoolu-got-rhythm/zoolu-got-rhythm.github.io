@@ -198,15 +198,36 @@ var terminal = (function(data) {
             var messageData = "";
             var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
             var self = this;
+            var subscribers = [];
             return {
 
                 test: console.log("in write object this refers too: " + moduleScope),
 
+                subscribe: function(obj){
+                    subscribers.push(obj);
+                },
+
+                unsubscribe: function(){
+                    subscribers.pop();
+                    //delete subscribers[subscribers.indexOf(obj.nameValue)];
+                },
+
+                notify: function(method, param1, param2){
+                    // check all subscribers and see if method is on there
+                    for(var i = 0; i < subscribers.length; i++){
+                        if(method in subscribers[i])
+                            subscribers[i][method](param1, param2);
+                    }
+                },
+
                 init: function () {
-                    console.log(moduleScope);
-                    moduleScope.rewind();
-                    clearTimeout(anim1);
-                    clearTimeout(anim2);
+                    console.log(this);
+                    console.log(subscribers);
+                    this.notify("rewind", param1, param2);
+                    // clearTimeout(anim1);
+                    // clearTimeout(anim2);
+
+
                     // maybe map and make it pure instead?
                     keyNodes.forEach(function (DOMKey) {
                         console.log(DOMKey);
@@ -246,7 +267,11 @@ var terminal = (function(data) {
 // interface
 terminal.read.test;
 terminal.write.test;
+
+
 terminal.read.init();
+
+
     
     
     
@@ -260,13 +285,17 @@ terminal.read.init();
     var button1 = document.getElementById("button1");
     button1.addEventListener("click", function(event){
         // implement
+        // terminal.write.unsubscribe(terminal.read); // free up space again
+        // terminal.read.init();
         alert("clicked button 1");
+
     });
 
     var button2 = document.getElementById("button2");
     button2.addEventListener("click", function(event){
         // implement
         // stop what actions are happening, clear timeouts etc.
+        terminal.write.subscribe(terminal.read);
         terminal.write.init();
         terminal.write.test;
         alert("clicked button 2");
