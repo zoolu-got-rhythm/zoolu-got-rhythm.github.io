@@ -59,8 +59,8 @@ var terminal = (function(data) {
                     // work it needs to do
                     clearTimeout(anim1);
                     clearTimeout(anim2);
-                    console.log(this);
-                    closureScope.rewind();
+                    //console.log(this);
+                    //closureScope.rewind();
                 },
 
                 init: function () {
@@ -169,7 +169,7 @@ var terminal = (function(data) {
                     var prevLetterPos;
                     var toggleOff = false;
 
-                    return function (key) {
+                    return function keyPress(key) {
                         // soundEffect..
                         var soundEffect = new Audio("keyboard_key.mp3");
                         soundEffect.play();
@@ -185,7 +185,6 @@ var terminal = (function(data) {
                             toggleOff = true;
                     }
                 })(),
-
 
                 rewind: function (response, speed) {
                     //remove children/letters from the computer monitor.
@@ -240,10 +239,16 @@ var terminal = (function(data) {
                     // check all subscribers and see if method is on there
                     // subscribers.forEach(fn => fn.call());
                     subscribers.forEach(function(fn){
-                        if(fn.name === funcName){
-                            fn(params);
-                        }else{
-                            fn();
+                        //var funcName = String(funcName);
+                        console.log(typeof fn.name === funcName);
+                        if(fn.name === funcName) {
+                            if(params){
+                                console.log("notifying func with params");
+                                fn(params);
+                            }else{
+                                console.log("notifying func without params");
+                                fn();
+                            }
                         }
                     })
                 },
@@ -252,38 +257,37 @@ var terminal = (function(data) {
                     var self = this;
                     console.log(this);
                     console.log(subscribers);
-                    this.notify(); // uses other modules function to do work
+                    this.notify("update"); // uses other modules function to do work
+                    this.notify("rewind");
                     // clearTimeout(anim1);
                     // clearTimeout(anim2);
 
 
                     // maybe map and make it pure instead?
-                    keyNodes.forEach(function (DOMKey) {
-                        console.log(DOMKey);
-                        window.addEventListener("keydown", function (event) {
-                            var key = event.keyCode - 65;
-                            var qwertyKey = alphabet.indexOf(asciiKeys[key]);
-                            console.log(alphabet[qwertyKey]);
-                            self.userInput(alphabet[qwertyKey]); // might have to use bind
-                        });
-                    });
+                       // console.log(DOMKey);
+                        // need keypress and keyup event listeners i think
+                        document.addEventListener("keydown", function (event) {
+                            keyNodes.forEach(function (DOMKey) {
+                                var key = event.keyCode - 65;
+                                var qwertyKey = alphabet.indexOf(asciiKeys[key]);
+                                console.log(alphabet[qwertyKey]);
+                                console.log("event listener called");
+                                self.userInput(alphabet[qwertyKey]); // might have to use bind
+                                // event.stopPropagation();
+                            });
+                        }, true);
+
                 },
 
                 // user types message input
                 // hit enter: send post request to db.
                 userInput: function (key) {
-                    if (key === 100) { // delete keycode
-                        if (monitor.children.length === 0)
-                            return;
-                        else {
-                            monitor.removeChild(monitor.lastChild);
-                        }
-                    } else {
-                        this.notify("keyPress", key);
-                        // keyPress(key);
-                        // monitor.appendChild(key);
-                        // monitor.lastElementChild.style.borderBottom = "animate";
-                    }
+                    var character = document.createElement("p");
+                    character.innerHTML = key;
+                    character.classList.add('characters');
+
+                    this.notify("keyPress", key);
+                    monitor.appendChild(character);
                 },
 
 
@@ -316,6 +320,8 @@ window.onload = terminal.read.init();
             return;
         terminal.read.toggleActiveStatus();
         terminal.write.unsubscribe(terminal.read.update); // free up space again
+        terminal.write.unsubscribe(terminal.read.rewind);
+        terminal.write.unsubscribe(terminal.read.keyPress);
         terminal.read.init();
         alert("clicked button 1");
     });
@@ -329,6 +335,7 @@ window.onload = terminal.read.init();
         // stop what actions are happening, clear timeouts etc.
         terminal.read.toggleActiveStatus();
         terminal.write.subscribe(terminal.read.update);
+        terminal.write.subscribe(terminal.read.rewind);
         terminal.write.subscribe(terminal.read.keyPress);
         terminal.write.init();
         alert("clicked button 2");
