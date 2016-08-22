@@ -264,18 +264,48 @@ var terminal = (function(data) {
 
 
                     // maybe map and make it pure instead?
-                       // console.log(DOMKey);
-                        // need keypress and keyup event listeners i think
-                        document.addEventListener("keydown", function (event) {
-                            keyNodes.forEach(function (DOMKey) {
-                                var key = event.keyCode - 65;
-                                var qwertyKey = alphabet.indexOf(asciiKeys[key]);
-                                console.log(alphabet[qwertyKey]);
-                                console.log("event listener called");
-                                self.userInput(alphabet[qwertyKey]); // might have to use bind
-                                // event.stopPropagation();
+                    // console.log(DOMKey);
+                    // need keypress and keyup event listeners i think
+                    document.addEventListener("keypress", function (event) {
+
+                        // exception handling, use throw statement to write own exception to be catched and handled.
+                        try{
+                            var keycode = event.keyCode || event.which; // which is older browsers pre-fix
+                            var keySymbol = String.fromCharCode(keycode);
+                            // input/error handling
+
+                            var keyboard = {};
+                            asciiKeys.forEach(function(ele){
+                                keyboard[ele];
                             });
-                        }, true);
+
+                            if(keyboard.hasOwnProperty(keySymbol)){
+                                alert(keySymbol);
+                            }else{
+                                alert("");
+                            }
+
+                            console.log(keySymbol);
+                            self.userInput(keySymbol); // might have to use bind
+                        }catch(err){
+                            alert(err);
+                        }
+
+
+
+
+                        // if(keycode is in alphabet){
+                        //     // run
+                        //     if(keycode === "enter"){
+                        //         // submit user input
+                        //     }
+                        // }else{
+                        //     // return;
+                        // }
+
+
+
+                    }, false);
 
                 },
 
