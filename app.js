@@ -223,6 +223,7 @@ var terminal = (function(data) {
             var asciiKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
             var self = this;
             var subscribers = [];
+            var currentUserMsg = "";
 
             return {
 
@@ -269,31 +270,32 @@ var terminal = (function(data) {
                     // console.log(DOMKey);
                     // need keypress and keyup event listeners i think
                     document.addEventListener("keypress", function (event) {
-
                         // exception handling, use throw statement to write own exception to be catched and handled.
                         try{
-                            var keycode = event.keyCode || event.which; // which is older browsers pre-fix
+                            var keycode = event.keyCode || event.which; // .which is older browsers pre-fix
                             var keySymbol = String.fromCharCode(keycode);
                             // input/error handling
-
+                            console.log(keySymbol);
                             var keyboard = {};
                             asciiKeys.forEach(function(ele){
-                                keyboard[ele];
+                                keyboard[ele] = ele;
                             });
 
                             if(keyboard.hasOwnProperty(keySymbol)){
-                                alert(keySymbol);
+                                console.log(keySymbol);
+                                self.userInput(keySymbol); // might have to use bind
+                            }else if(keySymbol === " "){
+                                self.userInput(keySymbol);
+                            }else if(keycode === "enter"){
+                                // post user input to table via xml http request/ajax
+                                // makeRequest("post", currentUserMsg);
                             }else{
-                                alert("");
+                                // if key pressed isn't a char or enter then ignore keypress & exit event
+                                return;
                             }
-
-                            console.log(keySymbol);
-                            self.userInput(keySymbol); // might have to use bind
                         }catch(err){
-                            alert(err);
+                            console.log("error " + err);
                         }
-
-
                     }, false);
 
                 },
